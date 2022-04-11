@@ -1,0 +1,50 @@
+body {
+    --nav-width: 200px;
+    margin: 0 0 0 0;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 18px;
+    color: #eeeeee;
+    background-color: #222222;
+}
+
+.nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background: #222222;
+}
+
+.nav__link {
+    display: inline-block;
+    padding: 12px 18px;
+    text-decoration: none;
+    color: #eeeeee;
+    font-weight: 500;
+}
+
+.nav__link:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+#app {
+    /* margin: 2em; */
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+#cc{
+    overflow-x: hidden;
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    background-color: black;
+}
+.post{
+    margin: 2em;
+}
+#cd{
+    position: block;
+    z-index: -1;
+    top: 0;
+    background-color: black;
+}
