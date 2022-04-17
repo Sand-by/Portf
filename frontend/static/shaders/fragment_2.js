@@ -26,7 +26,7 @@ vec2 N22(vec2 p)
 
 vec2 GetPos(vec2 id,vec2 offs) {
     
-	vec2 n= N22(id+offs)*iTime;
+	vec2 n= N22(id+offs)*iTime+(iMouse.x+iMouse.y)*2.;
 	//float x = sin(iTime*n.x);
     //float y =cos(iTime*n.y);
     return offs+sin(n)*.4;
@@ -92,9 +92,10 @@ return m;
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
     vec2 uv = (gl_FragCoord.xy-.5*iResolution.xy)/min(iResolution.x,iResolution.y);
-    uv = uv/2.;
-    uv.x-=iMouse.x*.12;
-    uv.y-=iMouse.y*.12;
+    //uv = uv/2.;
+    // uv.x-=iMouse.x*.12;
+    // uv.y-=iMouse.y*.12;
+
     float gradient = uv.y;
     
     float m =  0.;

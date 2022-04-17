@@ -12,20 +12,15 @@ export default class extends AbstractView {
         return `
         <div class="post">
             <h1>Posts</h1>
-            <p>You are viewing the posts!</p>
+            <p id ="pa">You are viewing the posts!</p>
         </div>
-            <canvas id ="cc" width="400" height="400"></canvas>
-            <canvas id ="cd" width="400" height="400"></canvas>
-            <canvas id ="cd" width="400" height="400"></canvas>
-            <canvas id ="cd" width="400" height="400"></canvas>
-            <canvas id ="cd" width="400" height="400"></canvas>
-
-
+            <canvas id ="cc" width="800" height="500"></canvas>
+        
         `;
     }
     
     async afterRender() {
-        const canvas = document.querySelectorAll('#cc');
+        const canvas = document.querySelector('#cc');
         let scene,camera,renderer;
         let uniforms;
         var mouse = new THREE.Vector2();
@@ -54,25 +49,20 @@ export default class extends AbstractView {
                   });
                 const mesh = new THREE.Mesh(plane, material)
                 scene.add(mesh);
-                renderer = new THREE.WebGLRenderer({canvas: canvas[0]});
+                renderer = new THREE.WebGLRenderer({canvas: canvas});
 
                 renderer.setPixelRatio(window.devicePixelRatio);
 
-                onWindowResize();
-                window.addEventListener('resize',onWindowResize);
+                //onWindowResize();
+               // window.addEventListener('resize',onWindowResize);
                 window.addEventListener('mousemove',onMouseMove);
-                //window.addEventListener( 'mousemove', onMouseMove, false );
-
-        
         }
-        function onWindowResize(){
-          renderer.setSize(window.innerWidth,window.innerHeight);
-        }      
+
+        // function onWindowResize(){
+        //   renderer.setSize(canvas[0].width,window.innerHeight);
+        //   console.log(canvas[0].width);
+        // }      
         function onMouseMove( event ) {
-
-            // calculate mouse position in normalized device coordinates
-            // (-1 to +1) for both components
-
             mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
             mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
             uniforms['iMouse'].value.set(mouse.x,mouse.y);
@@ -80,7 +70,7 @@ export default class extends AbstractView {
         function animate(){
             requestAnimationFrame(animate);
             uniforms['iTime'].value = performance.now()/1000;
-            uniforms['iResolution'].value.set(window.innerWidth,window.innerHeight); 
+            uniforms['iResolution'].value.set(canvas.width,canvas.height); 
             uniforms['iMouse'].value.set(mouse.x,mouse.y);
             renderer.render(scene,camera);
         }
